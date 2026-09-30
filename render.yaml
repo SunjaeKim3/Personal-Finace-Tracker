@@ -1,0 +1,40 @@
+# Render Blueprint: New > Blueprint > pick this repo. Fill the "sync: false" values in the dashboard.
+services:
+  - type: web
+    name: finance-tracker
+    runtime: docker
+    plan: free # sleeps when idle (first request takes ~1 min); "starter" stays awake
+    healthCheckPath: /healthz
+    envVars:
+      - key: ENV
+        value: production
+      - key: TIMEZONE
+        value: America/New_York
+      - key: PLAID_ENV
+        value: sandbox
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: APP_URL # e.g. https://finance-tracker-xxxx.onrender.com
+        sync: false
+      - key: DATABASE_URL # Neon connection string
+        sync: false
+      - key: ENCRYPTION_KEY # Fernet key; generate locally, keep a copy somewhere safe
+        sync: false
+      - key: ALLOWED_EMAILS
+        sync: false
+      - key: CRON_SECRET
+        sync: false
+      - key: PLAID_CLIENT_ID
+        sync: false
+      - key: PLAID_SECRET
+        sync: false
+      - key: PLAID_REDIRECT_URI # APP_URL/plaid-oauth, after registering it with Plaid
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false

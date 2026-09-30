@@ -1,0 +1,30 @@
+{
+  "name": "finance-tracker-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "oxlint",
+    "preview": "vite preview",
+    "gen:api": "cd ../backend && .venv/bin/python -c \"import json; from app.main import app; print(json.dumps(app.openapi(), indent=1))\" > ../frontend/openapi.json && cd ../frontend && npx --yes openapi-typescript@7 openapi.json -o src/api/schema.d.ts"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.104.0",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-plaid-link": "^5.0.0",
+    "react-router-dom": "^7.18.4",
+    "recharts": "^3.10.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.7",
+    "@vitejs/plugin-react": "^6.1.1",
+    "oxlint": "^1.81.0",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}
